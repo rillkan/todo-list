@@ -1,7 +1,14 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
-import { TodoItem } from "./types/Todolist types";
+import { Button, Form, Modal, Card, Col, Row, Badge } from "react-bootstrap";
+
+interface TodoItem {
+  activity: string;
+  price: number;
+  type: string;
+  bookingRequired: boolean;
+  accessibility: number;
+}
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -36,13 +43,26 @@ function App() {
         {todos.length > 0 && (
           <>
             <h3>Todo List:</h3>
-            <ul>
+            <Row>
               {todos.map((item, index) => (
-                <li key={index}>
-                  {item.activity} - ${item.price} - {item.type} - Booking Required: {item.bookingRequired ? "Yes" : "No"} - Accessibility: {item.accessibility}
-                </li>
+                <Col md={4} key={index}>
+                  <Card className="my-3">
+                    <Card.Body>
+                      <Card.Title>{item.activity}</Card.Title>
+                      <Card.Text>
+                        Price: ${item.price} <br />
+                        Type: {item.type} <br />
+                        Booking Required: {item.bookingRequired ? "Yes" : "No"} <br />
+                        Accessibility: {item.accessibility}
+                      </Card.Text>
+                      <Badge bg={item.bookingRequired ? "success" : "danger"}>
+                        {item.bookingRequired ? "Booking Required" : "No Booking Required"}
+                      </Badge>
+                    </Card.Body>
+                  </Card>
+                </Col>
               ))}
-            </ul>
+            </Row>
           </>
         )}
       </div>
