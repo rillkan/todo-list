@@ -40,7 +40,7 @@ function App() {
       <div className="mt-4">
         {todos.length > 0 && (
           <>
-            <h3>Todo List:</h3>
+            <h3>Todo List: {todos.length} item</h3>
             <Row>
               {todos.map((item, index) => (
                 <Col md={4} key={index}>
