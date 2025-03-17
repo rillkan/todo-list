@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useState } from "react";
+import Button from "react-bootstrap/Button";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todos, setTodos] = useState([]);
+  const [newTodo, setNewTodo] = useState("");
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="m-3">
+      <input
+        type="text"
+        value={newTodo}
+        onChange={(event) => setNewTodo(event.target.value)}
+      />
+      <Button variant="primary" className="ms-3" >
+        Add
+      </Button>
+
+      {todos.length > 0 && (
+        <div>
+          <h3>Todo List:</h3>
+          <ul>
+            {todos.map((todo, index) => (
+              <li key={index}>{todo}
+                <Button variant="danger" className="ms-3" >
+                  Delete
+                </Button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;
