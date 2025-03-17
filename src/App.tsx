@@ -1,14 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import { Button, Form, Modal, Card, Col, Row, Badge } from "react-bootstrap";
-
-interface TodoItem {
-  activity: string;
-  price: number;
-  type: string;
-  bookingRequired: boolean;
-  accessibility: number;
-}
+import { TodoItem } from "./types/Todolist types";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
