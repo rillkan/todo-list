@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Form, Modal, Card, Col, Row, Badge } from "react-bootstrap";
 import { TodoItem } from "./types/Todolist types";
 
@@ -12,10 +12,19 @@ function App() {
     bookingRequired: false,
     accessibility: 0.5,
   });
-  const [todos, setTodos] = useState<TodoItem[]>([]);
+
+  const [todos, setTodos] = useState<TodoItem[]>(() => {
+    const storedTodos = localStorage.getItem("todos");
+    return storedTodos ? JSON.parse(storedTodos) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const handleSave = () => {
-    setTodos([...todos, todo]);
+    const updatedTodos = [...todos, todo];
+    setTodos(updatedTodos);
     setTodo({
       activity: "",
       price: 0,
@@ -40,7 +49,7 @@ function App() {
       <div className="mt-4">
         {todos.length > 0 && (
           <>
-            <h3>Todo List: {todos.length} item</h3>
+            <h3>Todo List: {todos.length} item{todos.length > 1 ? "s" : ""}</h3>
             <Row>
               {todos.map((item, index) => (
                 <Col md={4} key={index}>
@@ -102,7 +111,17 @@ function App() {
                 value={todo.type}
                 onChange={(e) => setTodo({ ...todo, type: e.target.value })}
               >
-                {["education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork"].map((type) => (
+                {[
+                  "education",
+                  "recreational",
+                  "social",
+                  "diy",
+                  "charity",
+                  "cooking",
+                  "relaxation",
+                  "music",
+                  "busywork",
+                ].map((type) => (
                   <option key={type} value={type}>{type}</option>
                 ))}
               </Form.Select>
