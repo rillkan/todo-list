@@ -26,6 +26,11 @@ function App() {
     setShowModal(false);
   };
 
+  const deleteTodo = (index: number) => {
+    const updatedTodos = todos.filter((_, i) => i !== index);
+    setTodos(updatedTodos);
+  };
+
   return (
     <div className="m-3">
       <Button variant="primary" onClick={() => setShowModal(true)}>
@@ -51,6 +56,9 @@ function App() {
                       <Badge bg={item.bookingRequired ? "success" : "danger"}>
                         {item.bookingRequired ? "Booking Required" : "No Booking Required"}
                       </Badge>
+                      <Button variant="danger" className="ms-2" onClick={() => deleteTodo(index)}>
+                        Delete
+                      </Button>
                     </Card.Body>
                   </Card>
                 </Col>
@@ -100,7 +108,7 @@ function App() {
               </Form.Select>
             </Form.Group>
 
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-5">
               <Form.Check
                 type="checkbox"
                 label="Booking Required"
