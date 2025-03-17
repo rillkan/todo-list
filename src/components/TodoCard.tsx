@@ -1,5 +1,5 @@
 import { Card, Badge, Button } from "react-bootstrap";
-import { TodoItem } from "../types/TodoItem";
+import { TodoItem } from "../types/Todolist types";
 
 type TodoCardProps = {
   todo: TodoItem;
@@ -8,6 +8,7 @@ type TodoCardProps = {
 
 export default function TodoCard({ todo, onDelete }: TodoCardProps) {
   return (
+    //Rendering the TodoCard
     <Card className="my-3">
       <Card.Body>
         <Card.Title>{todo.activity}</Card.Title>

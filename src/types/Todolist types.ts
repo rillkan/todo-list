@@ -5,3 +5,4 @@ export interface TodoItem {
   bookingRequired: boolean;
   accessibility: number;
 }
+

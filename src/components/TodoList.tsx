@@ -1,6 +1,6 @@
 import { Row, Col } from "react-bootstrap";
 import TodoCard from "./TodoCard";
-import { TodoItem } from "../types/TodoItem";
+import { TodoItem } from "../types/Todolist types";
 
 type TodoListProps = {
   todos: TodoItem[];

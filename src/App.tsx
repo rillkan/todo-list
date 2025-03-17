@@ -19,11 +19,12 @@ export default function App() {
     const storedTodos = localStorage.getItem("todos");
     return storedTodos ? JSON.parse(storedTodos) : [];
   });
-
+  //Saving the todos on localStorage 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
+  //Add Todo Function
   const handleSave = () => {
     setTodos([...todos, todo]);
     setTodo({
@@ -35,7 +36,7 @@ export default function App() {
     });
     setShowModal(false);
   };
-
+  //Delete Todo function
   const deleteTodo = (index: number) => {
     setTodos(todos.filter((_, i) => i !== index));
   };

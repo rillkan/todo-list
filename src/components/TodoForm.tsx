@@ -1,5 +1,5 @@
 import { Modal, Button, Form } from "react-bootstrap";
-import { TodoItem } from "../types/TodoItem";
+import { TodoItem } from "../types/Todolist types";
 
 type TodoFormProps = {
   show: boolean;
@@ -11,6 +11,7 @@ type TodoFormProps = {
 
 export default function TodoForm({ show, todo, setTodo, handleSave, handleClose }: TodoFormProps) {
   return (
+    //Rendering the modal
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Add New Activity</Modal.Title>
